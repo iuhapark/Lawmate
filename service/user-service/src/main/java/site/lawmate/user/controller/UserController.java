@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping("/all")
     public ResponseEntity<List<UserDto>> findAll(
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size
+            @RequestParam(value = "size", defaultValue = "100") int size
     ) {
         log.info("유저 전체 조회 진입 page: {} size: {}", page, size);
         return ResponseEntity.ok(service.findAll(PageRequest.of(page, size)));
@@ -39,6 +39,12 @@ public class UserController {
         Boolean flag = service.existsByUsername(email);
         log.info("existsEmail : " + email);
         return ResponseEntity.ok(flag);
+    }
+
+    @GetMapping("/findEmail")
+    public ResponseEntity<Optional<UserDto>> findByEmail(@RequestParam("email") String email) {
+        log.info("유저 findByEmail: {}", email);
+        return ResponseEntity.ok(service.findByEmail(email));
     }
 
     @GetMapping("/search")
@@ -67,11 +73,4 @@ public class UserController {
         var flag = service.logout(accessToken);
         return ResponseEntity.ok(flag);
     }
-
-
-    @PutMapping("/updatePoint/{id}")
-    public ResponseEntity<Messenger> updateUserPoint(@RequestBody UserDto dto) {
-        return ResponseEntity.ok(service.updateUserPoints(dto));
-    }
-
 }
