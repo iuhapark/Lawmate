@@ -21,6 +21,6 @@ public class LawPayment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long lawyerId;
-    private String premiumUid;
+    private String impUid;
     private PaymentStatus status;
 }
