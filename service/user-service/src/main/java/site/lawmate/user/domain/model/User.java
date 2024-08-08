@@ -28,6 +28,8 @@ public class User extends BaseEntity {
     @NotNull
     private String name;
 
+    private String password;
+
     @NotNull
     private String profile;
 
@@ -57,10 +59,10 @@ public class User extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "writer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "writer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Question> questions;
 
-    @OneToMany(mappedBy = "buyer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "buyer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UserPayment> payments;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

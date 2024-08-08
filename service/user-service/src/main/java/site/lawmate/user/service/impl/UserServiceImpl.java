@@ -9,6 +9,8 @@ import site.lawmate.user.component.Messenger;
 import site.lawmate.user.domain.dto.LoginDTO;
 import site.lawmate.user.domain.dto.OAuth2UserDto;
 import site.lawmate.user.domain.dto.UserDto;
+import site.lawmate.user.domain.dto.UserModel;
+import site.lawmate.user.domain.model.PrincipalUserDetails;
 import site.lawmate.user.domain.model.User;
 import site.lawmate.user.domain.vo.Registration;
 import site.lawmate.user.domain.vo.Role;
@@ -30,6 +32,7 @@ public class UserServiceImpl implements UserService {
     public Messenger save(UserDto dto) {
         log.info("service 진입 파라미터: {} ", dto);
         dto.setRegistration(Registration.LOCAL.name());
+        log.info("Registration: {}", dto.getRegistration());
         User user = dtoToEntity(dto);
         User savedUser = userRepository.save(user);
         return Messenger.builder()
@@ -72,6 +75,29 @@ public class UserServiceImpl implements UserService {
                             .roles(List.of(Role.ROLE_NEWUSER))
                             .build())
                     .build();
+        }
+    }
+    @Transactional
+    @Override
+    public PrincipalUserDetails login(LoginDTO dto){
+        log.info("login 진입 성공 email: {}", dto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(dto.getEmail());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            boolean flag = user.getPassword().equals(dto.getPassword());
+            if (flag){
+                return new PrincipalUserDetails(UserModel.builder()
+                        .id(user.getId().toString())
+                        .email(user.getEmail())
+                        .name(user.getName())
+                        .roles(List.of(Role.ROLE_USER))
+                        .registration(Registration.valueOf(Registration.LOCAL.name()))
+                        .build());
+            } else {
+                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            }
+        } else{
+            throw new IllegalArgumentException("해당 유저가 존재하지 않습니다.");
         }
     }
 

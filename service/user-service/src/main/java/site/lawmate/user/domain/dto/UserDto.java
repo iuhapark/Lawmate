@@ -1,9 +1,6 @@
 package site.lawmate.user.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 import site.lawmate.user.domain.vo.Role;
 
@@ -14,10 +11,12 @@ import java.util.List;
 @Component
 @Data
 @Builder
+@Setter
 public class UserDto {
     private Long id;
     private String email;
     private String name;
+    private String password;
     private String profile;
     private Role role;
     private String phone;

@@ -13,6 +13,7 @@ import site.lawmate.user.component.Messenger;
 import site.lawmate.user.domain.dto.LoginDTO;
 import site.lawmate.user.domain.dto.OAuth2UserDto;
 import site.lawmate.user.domain.dto.UserDto;
+import site.lawmate.user.domain.model.PrincipalUserDetails;
 import site.lawmate.user.service.UserService;
 
 import java.sql.SQLException;
@@ -34,6 +35,12 @@ public class AuthController {
     public ResponseEntity<Messenger> save(@RequestBody UserDto dto) throws SQLException {
         log.info("user save 파라미터: {}", dto);
         return ResponseEntity.ok(service.save(dto));
+    }
+
+
+    @PostMapping(path = "/login/local")
+    public ResponseEntity<PrincipalUserDetails> localLogin(@RequestBody LoginDTO dto) throws SQLException {
+        return ResponseEntity.ok(service.login(dto));
     }
 
     @PostMapping("/oauth2/{registration}")

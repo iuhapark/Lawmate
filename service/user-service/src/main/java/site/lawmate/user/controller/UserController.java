@@ -60,11 +60,13 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Messenger> update(@RequestBody UserDto dto) {
+        log.info("유저 update dto: {}", dto);
         return ResponseEntity.ok(service.update(dto));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Messenger> delete(@PathVariable("id") Long id) {
+        log.info("유저 delete id: {}", id);
         return ResponseEntity.ok(service.delete(id));
     }
 
