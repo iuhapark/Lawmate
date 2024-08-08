@@ -33,7 +33,7 @@ public class AuthRouter {
     @Bean
     RouterFunction<ServerResponse> authRoutes() {
         return RouterFunctions.route()
-//                .POST("/auth/login/local", req -> req.bodyToMono(LoginDTO.class).flatMap(authHandler::localLogin))
+                .POST("/auth/login/local", req -> req.bodyToMono(LoginDTO.class).flatMap(authHandler::localLogin))
                 .POST("/auth/refresh", req -> authHandler.refresh(req.headers().header("Authorization").get(0)))
                 .POST("/auth/logout", req -> authHandler.logout(req.headers().header("Authorization").get(0)))
                 .POST("/auth/admin/login", req -> req.bodyToMono(LoginDTO.class).flatMap(authHandler::adminLogin))

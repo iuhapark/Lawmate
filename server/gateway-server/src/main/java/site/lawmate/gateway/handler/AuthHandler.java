@@ -21,18 +21,18 @@ public class AuthHandler {
     private final WebClient webClient;
     private final JwtTokenProvider jwtTokenProvider;
 
-//    public Mono<ServerResponse> localLogin(LoginDTO dto) {
-//        return  webClient.post()
-//                .uri("lb://user-service/auth/login/local")
-//                .accept(MediaType.APPLICATION_JSON)
-//                .bodyValue(dto)
-//                .retrieve()
-//                .bodyToMono(PrincipalUserDetails.class)
-//                .flatMap(this::generateTokensAndCreateResponse)
-//                .onErrorMap(Exception.class, e -> new GatewayException(ExceptionStatus.UNAUTHORIZED, "Invalid User"))
-//                .switchIfEmpty(Mono.error(new GatewayException(ExceptionStatus.UNAUTHORIZED, "Invalid User")))
-//                .onErrorResume(GatewayException.class, e -> ServerResponse.status(e.getStatus().getStatus().value()).bodyValue(e.getMessage()));
-//    }
+    public Mono<ServerResponse> localLogin(LoginDTO dto) {
+        return  webClient.post()
+                .uri("lb://user-service/auth/login/local")
+                .accept(MediaType.APPLICATION_JSON)
+                .bodyValue(dto)
+                .retrieve()
+                .bodyToMono(PrincipalUserDetails.class)
+                .flatMap(this::generateTokensAndCreateResponse)
+                .onErrorMap(Exception.class, e -> new GatewayException(ExceptionStatus.UNAUTHORIZED, "Invalid User"))
+                .switchIfEmpty(Mono.error(new GatewayException(ExceptionStatus.UNAUTHORIZED, "Invalid User")))
+                .onErrorResume(GatewayException.class, e -> ServerResponse.status(e.getStatus().getStatus().value()).bodyValue(e.getMessage()));
+    }
 
     public Mono<ServerResponse> refresh(String refreshToken) {
         return Mono.just(refreshToken)
