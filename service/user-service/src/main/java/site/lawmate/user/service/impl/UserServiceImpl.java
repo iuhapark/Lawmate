@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.lawmate.user.component.Messenger;
-import site.lawmate.user.domain.dto.LoginDto;
+import site.lawmate.user.domain.dto.LoginDTO;
 import site.lawmate.user.domain.dto.OAuth2UserDto;
 import site.lawmate.user.domain.dto.UserDto;
 import site.lawmate.user.domain.model.User;
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public LoginDto oauthJoin(OAuth2UserDto dto) {
+    public LoginDTO oauthJoin(OAuth2UserDto dto) {
         User oauthUser = User.builder()
                 .email(dto.email())
                 .name(dto.name())
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
                     .stream()
                     .findFirst()
                     .get();
-            return LoginDto.builder()
+            return LoginDTO.builder()
                     .user(UserDto.builder()
                             .id(existOauthUpdate.getId())
                             .email(existOauthUpdate.getEmail())
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
                     .build();
         } else {
             var newOauthSave = userRepository.save(oauthUser);
-            return LoginDto.builder()
+            return LoginDTO.builder()
                     .user(UserDto.builder()
                             .id(newOauthSave.getId())
                             .email(newOauthSave.getEmail())

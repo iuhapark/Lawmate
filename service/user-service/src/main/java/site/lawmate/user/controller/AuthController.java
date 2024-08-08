@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.lawmate.user.component.Messenger;
-import site.lawmate.user.domain.dto.LoginDto;
+import site.lawmate.user.domain.dto.LoginDTO;
 import site.lawmate.user.domain.dto.OAuth2UserDto;
 import site.lawmate.user.domain.dto.UserDto;
 import site.lawmate.user.service.UserService;
@@ -37,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/oauth2/{registration}")
-    public ResponseEntity<LoginDto> oauthLogin(@RequestBody OAuth2UserDto dto) {
+    public ResponseEntity<LoginDTO> oauthLogin(@RequestBody OAuth2UserDto dto) {
         log.info("user oauth2 파라미터: {} ", dto);
         return ResponseEntity.ok(service.oauthJoin(dto));
     }

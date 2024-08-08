@@ -1,7 +1,7 @@
 package site.lawmate.user.service;
 
 import site.lawmate.user.component.Messenger;
-import site.lawmate.user.domain.dto.LoginDto;
+import site.lawmate.user.domain.dto.LoginDTO;
 import site.lawmate.user.domain.dto.OAuth2UserDto;
 import site.lawmate.user.domain.dto.UserDto;
 import site.lawmate.user.domain.model.User;
@@ -34,7 +34,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
                 .build();
     }
 
-    LoginDto oauthJoin(OAuth2UserDto dto);
+    LoginDTO oauthJoin(OAuth2UserDto dto);
 
     Boolean logout(String accessToken);
 
