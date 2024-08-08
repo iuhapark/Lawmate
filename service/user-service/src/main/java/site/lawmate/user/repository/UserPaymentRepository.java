@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import site.lawmate.user.domain.model.UserPayment;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserPaymentRepository extends JpaRepository<UserPayment, Long> {
@@ -13,5 +14,7 @@ public interface UserPaymentRepository extends JpaRepository<UserPayment, Long> 
 
     @Query("SELECT p FROM user_payments p WHERE p.buyer.id = :buyerId")
     List<UserPayment> findByBuyerId(Long buyerId);
+
+    Optional<UserPayment> findByLawyer(String lawyer);
 
 }

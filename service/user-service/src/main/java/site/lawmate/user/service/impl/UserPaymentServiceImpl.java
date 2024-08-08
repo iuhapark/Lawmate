@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Log4j2
 @Service
@@ -43,11 +42,14 @@ public class UserPaymentServiceImpl implements UserPaymentService {
         UserPayment payment = dtoToEntity(dto);
         UserPayment savedPayment = payRepository.save(payment);
         boolean exists = payRepository.existsById(savedPayment.getId());
-        boolean productExists = productRepository.existsById(savedPayment.getProduct().getId());
         if (exists && payment.getStatus() == PaymentStatus.OK) {
-            Optional.ofNullable(payment.getAmount())
-                    .filter(amount -> amount > 0)
-                    .ifPresent(amount -> addUserPoints(payment.getBuyer().getId(), amount));
+            Optional.ofNullable(payment.getBuyer())
+                    .map(User::getId)
+                    .ifPresent(buyerId -> {
+                        Optional.ofNullable(payment.getAmount())
+                                .filter(amount -> amount > 0)
+                                .ifPresent(amount -> addUserPoints(buyerId, amount));
+                    });
         }
         return Messenger.builder()
                 .message(exists ? "SUCCESS" : "FAILURE")
@@ -177,12 +179,18 @@ public class UserPaymentServiceImpl implements UserPaymentService {
     }
 
     @Override
+    public Optional<UserPaymentDto> findByLawyer(String lawyer) {
+        return payRepository.findByLawyer(lawyer)
+                .map(this::entityToDto);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<UserPaymentDto> findByBuyerId(Long buyerId) {
         return payRepository.findByBuyerId(buyerId)
                 .stream()
                 .map(this::entityToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -205,6 +213,8 @@ public class UserPaymentServiceImpl implements UserPaymentService {
             pay.setStatus(dto.getStatus());
             pay.setBuyer(dto.getBuyer());
             pay.setProduct(dto.getProduct());
+            pay.setAmount(dto.getAmount());
+            pay.setLawyer(dto.getLawyer());
             payRepository.save(pay);
             return Messenger.builder().message("SUCCESS").build();
         }

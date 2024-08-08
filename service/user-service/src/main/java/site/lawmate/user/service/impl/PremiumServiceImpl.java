@@ -70,7 +70,7 @@ public class PremiumServiceImpl implements PremiumService {
             Premium premium = optionalPremium.get();
             premium.setPlan(premiumDto.getPlan());
             premium.setPrice(premiumDto.getPrice());
-            premium.setExpireDate(premiumDto.getExpireDate());
+            premium.setLawyer(premiumDto.getLawyer());
             premiumRepository.save(premium);
             return Messenger.builder().message("SUCCESS").build();
         }
@@ -104,4 +104,8 @@ public class PremiumServiceImpl implements PremiumService {
         return premiumRepository.existsById(id);
     }
 
+    @Override
+    public Optional<PremiumDto> findByLawyer(String lawyer) {
+        return premiumRepository.findByLawyer(lawyer)
+                .map(this::entityToDto);    }
 }

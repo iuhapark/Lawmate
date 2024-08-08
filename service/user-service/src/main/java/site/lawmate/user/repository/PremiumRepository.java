@@ -9,6 +9,7 @@ import site.lawmate.user.domain.model.Premium;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PremiumRepository extends JpaRepository<Premium, Long> {
@@ -20,4 +21,7 @@ public interface PremiumRepository extends JpaRepository<Premium, Long> {
     void markAsExpired(Long id);
 
     List<Premium> findAllByOrderByIdAsc();
+
+    Optional<Premium> findByLawyer(String lawyer);
+
 }

@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import site.lawmate.user.domain.vo.PaymentStatus;
+import site.lawmate.user.domain.model.Premium;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +16,11 @@ import site.lawmate.user.domain.vo.PaymentStatus;
 @Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)public class LawPaymentDto {
     private Long id;
-    private Long lawyerId;
+    private String lawyer;
     private String impUid;
-    private PaymentStatus status;
+
+    private String status;
+    private Long amount;
+
+    private Premium premium;
 }

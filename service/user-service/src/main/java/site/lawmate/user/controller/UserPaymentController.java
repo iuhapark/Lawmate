@@ -124,6 +124,7 @@ public class UserPaymentController {
 
     @GetMapping("/buyer/{buyerId}")
     public ResponseEntity<List<UserPaymentDto>> findByBuyerId(@PathVariable("buyerId") Long buyerId) {
+        log.info("payment 구매자 결제 정보 조회 id: {} ", buyerId);
         return ResponseEntity.ok(userPaymentService.findByBuyerId(buyerId));
     }
 
@@ -133,5 +134,10 @@ public class UserPaymentController {
         return ResponseEntity.ok(userPaymentService.confirmPayment(dto));
     }
 
+    @GetMapping(path = "/findLawyer/{lawyer}")
+    public ResponseEntity<Optional<UserPaymentDto>> findByLawyer(@PathVariable("lawyer") String lawyer) {
+        log.info("premium 변호사 결제 정보 조회 id: {} ", lawyer);
+        return ResponseEntity.ok(userPaymentService.findByLawyer(lawyer));
+    }
 
 }

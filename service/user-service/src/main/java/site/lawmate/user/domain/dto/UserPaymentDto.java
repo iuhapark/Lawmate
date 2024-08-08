@@ -19,7 +19,8 @@ public class UserPaymentDto {
     private String lawyer;
     private String impUid;
     private PaymentStatus status;
+    private Long amount;
+
     private User buyer;
     private Product product;
-    private Long amount;
 }

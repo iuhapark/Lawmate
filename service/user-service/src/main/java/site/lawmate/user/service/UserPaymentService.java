@@ -10,6 +10,7 @@ import site.lawmate.user.domain.model.UserPayment;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserPaymentService extends CommandService<UserPaymentDto>, QueryService<UserPaymentDto> {
     // 결제 요청 데이터 조회
@@ -19,6 +20,8 @@ public interface UserPaymentService extends CommandService<UserPaymentDto>, Quer
     IamportResponse<Payment> paymentByCallback(PaymentCallbackRequest request);
 
     List<UserPaymentDto> findByBuyerId(Long buyerId);
+
+    Optional<UserPaymentDto> findByLawyer(String lawyer);
 
     Messenger cancelPayment(UserPaymentDto dto) throws IamportResponseException, IOException;
 
@@ -33,9 +36,7 @@ public interface UserPaymentService extends CommandService<UserPaymentDto>, Quer
                 .lawyer(dto.getLawyer())
                 .impUid(dto.getImpUid())
                 .status(dto.getStatus())
-                .buyer(dto.getBuyer())
                 .amount(dto.getAmount())
-                .product(dto.getProduct())
                 .build();
     }
 
@@ -45,9 +46,7 @@ public interface UserPaymentService extends CommandService<UserPaymentDto>, Quer
                 .lawyer(pay.getLawyer())
                 .impUid(pay.getImpUid())
                 .status(pay.getStatus())
-                .buyer(pay.getBuyer())
                 .amount(pay.getAmount())
-                .product(pay.getProduct())
                 .build();
     }
 
