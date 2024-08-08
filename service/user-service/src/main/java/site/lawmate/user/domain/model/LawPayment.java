@@ -1,9 +1,6 @@
 package site.lawmate.user.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import site.lawmate.user.domain.vo.PaymentStatus;
@@ -20,7 +17,15 @@ public class LawPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long lawyerId;
+    private String lawyer;
     private String impUid;
+
+    @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+    private Long amount;
+
+    @ManyToOne
+    @JoinColumn
+    private Premium premium;
+
 }

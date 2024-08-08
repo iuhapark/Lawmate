@@ -107,6 +107,8 @@ public class IssueServiceImpl implements IssueService {
                     .law(dto.getLaw())
                     .title(dto.getTitle())
                     .content(dto.getContent())
+                    .date(dto.getDate())
+                    .time(dto.getTime())
                     .lawyer(dto.getLawyer())
                     .client(dto.getClient())
                     .build();
