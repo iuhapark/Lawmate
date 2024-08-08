@@ -57,6 +57,7 @@ public class LawyerController {
 
     @PostMapping("/save")
     public ResponseEntity<Mono<Lawyer>> saveLawyer(@RequestBody Lawyer lawyer) {
+        log.info("lawyer: {}", lawyer.getLawyerNo());
         return ResponseEntity.ok(lawyerService.addLawyer(lawyer));
     }
 
@@ -104,7 +105,10 @@ public class LawyerController {
         return ResponseEntity.ok(lawyerService.getLawyersBySearch(search));
     }
 
-
+    @PostMapping("/resetPassword")
+    public ResponseEntity<Mono<Void>> resetPassword(@RequestParam String lawyerNo) {
+        return ResponseEntity.ok(lawyerService.resetPassword(lawyerNo));
+    }
 
 
 }
