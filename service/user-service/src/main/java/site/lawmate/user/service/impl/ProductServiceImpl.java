@@ -45,7 +45,6 @@ public class ProductServiceImpl implements ProductService {
             Product modifyProduct = product.toBuilder()
                     .itemName(productDto.getItemName())
                     .price(productDto.getPrice())
-                    .image(productDto.getImage())
                     .build();
             productRepository.save(modifyProduct);
             return Messenger.builder().message("SUCCESS").build();

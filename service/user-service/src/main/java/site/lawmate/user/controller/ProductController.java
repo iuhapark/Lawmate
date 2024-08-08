@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<ProductDto>> findById(@RequestParam("id") Long id) {
+    public ResponseEntity<Optional<ProductDto>> findById(@PathVariable("id") Long id) {
         log.info("product 정보 조회 진입 id: {} ", id);
         return ResponseEntity.ok(productService.findById(id));
     }

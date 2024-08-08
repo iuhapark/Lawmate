@@ -9,7 +9,6 @@ public interface ProductService extends CommandService<ProductDto>, QueryService
         return Product.builder()
                 .itemName(dto.getItemName())
                 .price(dto.getPrice())
-                .image(dto.getImage())
                 .build();
     }
 
@@ -18,7 +17,6 @@ public interface ProductService extends CommandService<ProductDto>, QueryService
                 .id(product.getId())
                 .itemName(product.getItemName())
                 .price(product.getPrice())
-                .image(product.getImage())
                 .build();
     }
 }
