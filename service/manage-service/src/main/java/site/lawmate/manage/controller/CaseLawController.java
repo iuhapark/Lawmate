@@ -2,6 +2,8 @@ package site.lawmate.manage.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import site.lawmate.manage.domain.dto.CaseLawDetailDto;
@@ -13,17 +15,20 @@ import java.util.List;
 
 
 @Slf4j
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/caselaw")
 public class CaseLawController {
 
     private final CaseLawService caselawService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<CaseLawDto>> getCaseLawList() {
-        return ResponseEntity.ok(caselawService.getCaseLawList());
+    public ResponseEntity<Page<CaseLawDto>> getCaseLawList(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(caselawService.getCaseLawList(PageRequest.of(page, size)));
     }
 
     @GetMapping("/{serialNumber}")

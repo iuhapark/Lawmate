@@ -4,6 +4,9 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import site.lawmate.manage.domain.dto.CaseLawDetailDto;
 import site.lawmate.manage.domain.dto.CaseLawDto;
@@ -22,18 +25,27 @@ public class CaseLawDaoImpl implements CaseLawDao {
     private final QCaseLaw caseLaw = QCaseLaw.caseLaw;
     private final QCaseLawDetail caseLawDetail = QCaseLawDetail.caseLawDetail;
     @Override
-    public List<CaseLawDto> getCaseLawList() {
-        return factory.select(
-                Projections.fields(CaseLawDto.class,
-                        caseLaw.serialNumber,
-                        caseLaw.caseName,
-                        caseLaw.caseNumber,
-                        caseLaw.dateOfDecision
+    public Page<CaseLawDto> getCaseLawList(PageRequest pageRequest) {
+        List<CaseLawDto> caseLawList = factory.select(
+                        Projections.fields(CaseLawDto.class,
+                                caseLaw.serialNumber,
+                                caseLaw.caseName,
+                                caseLaw.caseNumber,
+                                caseLaw.dateOfDecision
+                        )
                 )
-        )
                 .from(caseLaw)
                 .orderBy(caseLaw.serialNumber.desc())
+                .offset(pageRequest.getOffset())
+                .limit(pageRequest.getPageSize())
                 .fetch();
+
+        // 전체 데이터 수 계산
+        long total = factory.select(caseLaw.count())
+                .from(caseLaw)
+                .fetchOne();
+
+        return new PageImpl<>(caseLawList, pageRequest, total);
     }
 
     @Override

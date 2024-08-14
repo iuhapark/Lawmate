@@ -1,6 +1,8 @@
 package site.lawmate.manage.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import site.lawmate.manage.domain.dto.CaseLawDetailDto;
 import site.lawmate.manage.domain.dto.CaseLawDto;
@@ -17,8 +19,8 @@ public class CaseLawServiceImpl implements CaseLawService {
 
 
     @Override
-    public List<CaseLawDto> getCaseLawList() {
-        return caselawRepository.getCaseLawList();
+    public Page<CaseLawDto> getCaseLawList(PageRequest pageRequest) {
+        return caselawRepository.getCaseLawList(pageRequest);
     }
 
     @Override
