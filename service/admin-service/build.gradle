@@ -45,6 +45,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '4.1.2'
+
 	//redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
 
@@ -58,6 +59,9 @@ dependencies {
 	// kafka
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'io.projectreactor.kafka:reactor-kafka'
+
+	// netty
+	runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.111.Final:osx-aarch_64")
 }
 dependencyManagement {
 	imports {
