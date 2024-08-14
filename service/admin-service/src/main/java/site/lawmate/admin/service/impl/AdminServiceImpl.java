@@ -19,8 +19,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Mono<Admin> save(AdminDto adminDto) {
+
         return adminRepository.save(Admin.builder()
-                .username(adminDto.getUsername())
                 .email(adminDto.getEmail())
                 .name(adminDto.getName())
                 .password(adminDto.getPassword())
@@ -44,9 +44,9 @@ public class AdminServiceImpl implements AdminService {
     public Mono<Admin> update(String id, AdminDto adminDto) {
         return adminRepository.findById(id)
                 .map(admin -> {
-                    admin.setUsername(adminDto.getUsername());
+                    admin.setEmail(adminDto.getEmail());
                     admin.setPassword(adminDto.getPassword());
-                    admin.setRole(adminDto.getRole());
+                    admin.setName(adminDto.getName());
                     return admin;
                 })
                 .flatMap(adminRepository::save);

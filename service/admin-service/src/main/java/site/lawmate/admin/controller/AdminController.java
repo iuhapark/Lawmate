@@ -9,7 +9,6 @@ import reactor.core.publisher.Mono;
 import site.lawmate.admin.domain.dto.AdminDto;
 import site.lawmate.admin.domain.model.Admin;
 import site.lawmate.admin.service.AdminService;
-
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class AdminController {
 
     @PostMapping("/save")
     public ResponseEntity<Mono<Admin>> save(@RequestBody AdminDto adminDto) {
-        log.info("adminDto: {}", adminDto.getUsername());
+        log.info("adminDto: {}", adminDto.getEmail());
         return ResponseEntity.ok(adminService.save(adminDto));
     }
     @GetMapping("/{id}")
