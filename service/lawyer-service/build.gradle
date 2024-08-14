@@ -11,6 +11,9 @@ java {
 	sourceCompatibility = '17'
 }
 configurations {
+	all {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -30,21 +33,20 @@ ext {
 	set('springCloudVersion', "2023.0.2")
 }
 dependencies {
-//	implementation (':user-service') {
-//		transitive = false}
+
+	// SMTP
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// Cloud dependencies
+	implementation platform('software.amazon.awssdk:bom:2.20.56')
+	implementation 'software.amazon.awssdk:s3:'
+	implementation 'software.amazon.awssdk:sso'
+	implementation 'software.amazon.awssdk:ssooidc'
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.13'
+
 	// Spring Boot
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-devtools'
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
-
-	// Hateoas
-//	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-
-	// AMQP
-//	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-
-	// Security
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	// Actuator
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -52,14 +54,6 @@ dependencies {
 	// MongoDB
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	implementation group: 'org.mongodb', name: 'mongodb-driver-sync'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc' // baseEntity 용
-	// implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
-	// Redis
-//	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
-
-	// Kafka
-//	implementation 'org.springframework.kafka:spring-kafka'
 
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
@@ -69,7 +63,6 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.5'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.5'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.5'
-	// implementation 'com.auth0:java-jwt:4.4.0'
 
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
 
@@ -89,16 +82,12 @@ dependencies {
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '4.1.2'
 
 	// config
-//	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-
-	// pdfbox
-	implementation 'org.apache.pdfbox:pdfbox:2.0.27'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
 	// Test
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
-//	testImplementation 'org.springframework.kafka:spring-kafka-test'
 }
 dependencyManagement {
 	imports {
@@ -106,6 +95,6 @@ dependencyManagement {
 	}
 }
 
-// tasks.named('test') {
-// 	useJUnitPlatform()
-// }
+tasks.named('test') {
+	useJUnitPlatform()
+}
