@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17 #버전 명시
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /jenkins:/var/jenkins_home #왼쪽은 윈도우 : 오른쪽은 리눅스
+      - /var/run/docker.sock:/var/run/docker.sock #상위 도커 : 젠킨스 안의 도커를 연결
+    environment:
+      - TZ=Asia/Seoul
+    user: root
+    restart : unless-stopped
