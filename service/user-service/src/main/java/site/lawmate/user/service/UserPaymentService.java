@@ -31,8 +31,6 @@ public interface UserPaymentService extends CommandService<UserPaymentDto>, Quer
 
     Messenger confirmPayment(UserPaymentDto dto);
 
-//    List<UserPaymentDto> getAllPayments();
-
     default UserPayment dtoToEntity(UserPaymentDto dto) {
         return UserPayment.builder()
                 .lawyer(dto.getLawyer())

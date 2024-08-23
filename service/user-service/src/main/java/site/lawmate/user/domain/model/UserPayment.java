@@ -1,6 +1,7 @@
 package site.lawmate.user.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class UserPayment extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lawyer;
+    @NotNull
     private String impUid; //결제 고유 번호
     private Long amount;
 

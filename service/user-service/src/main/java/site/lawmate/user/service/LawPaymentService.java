@@ -23,6 +23,8 @@ public interface LawPaymentService extends CommandService<LawPaymentDto>, QueryS
                 .lawyer(dto.getLawyer())
                 .impUid(dto.getImpUid())
                 .amount(dto.getAmount())
+                .startDate(dto.getStartDate())
+                .expireDate(dto.getExpireDate())
                 .premium(dto.getPremium())
                 .build();
     }
@@ -33,6 +35,8 @@ public interface LawPaymentService extends CommandService<LawPaymentDto>, QueryS
                 .lawyer(pay.getLawyer())
                 .impUid(pay.getImpUid())
                 .amount(pay.getAmount())
+                .startDate(pay.getStartDate())
+                .expireDate(pay.getExpireDate())
                 .premium(pay.getPremium())
                 .build();
     }
