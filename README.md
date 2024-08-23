@@ -22,14 +22,19 @@
 
 
 ### 마이크로서비스 아키텍처
-
+<img src="https://github.com/user-attachments/assets/55de0960-adf9-488c-b5e1-cbb82055b983" alt="MSA" width="400"/>
+<img src="https://github.com/user-attachments/assets/d4259225-9409-4baa-b3ae-3d535e4dfddb" alt="Architecture" width="400"/>
 
 ### CI/CD 파이프라인 구축
-
+<img src="https://github.com/user-attachments/assets/c64c5a1a-0346-4d92-b6fc-29218c99d21d" alt="CICD" width="400"/>
 
 ### 통계, OAuth, 결제, 알림 기능
 - **통계**: 웹사이트 트래픽 및 변호사, 유저 통계를 Redis와 MongoDB를 통해 실시간 제공
+<img src="https://github.com/user-attachments/assets/038cb7ed-fc5d-4c49-bf4c-13da997f5c4a" alt="Statistics" width="400"/>
+
 - **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
+<img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
+
 - **결제**: PortOne API를 통해 상품 결제 및 프리미엄 구독 기능 구현
 - **알림**: SSE를 활용하여 실시간 알림 전송
 
@@ -41,5 +46,7 @@
 - **실시간 채팅**: Apache Kafka를 사용해 실시간 채팅 기능 구현
 
 ### AI 채팅
+<img src="https://github.com/user-attachments/assets/aea31458-7c45-4871-9989-48dd8ef1280d" alt="OAuth" width="400"/>
+
 - Llama3 양자화 모델을 활용하여 법률 답변 생성 및 법 카테고리 분류
 - AI 모델이 분석한 결과를 기반으로 맞춤 변호사 추천 기능 구현
