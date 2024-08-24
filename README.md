@@ -20,6 +20,15 @@
 - **DevOps & CI/CD**: Naver Cloud, Docker, Kubernetes, Jenkins, GitHub
 
 
+### 담당 파트
+- **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
+<img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
+
+- **결제**: PortOne API를 통해 상품 결제 및 취소, 구독 기능 구현
+- **알림**: SSE를 활용하여 실시간 알림 전송 및 조회
+- **게시판**: 질문게시판 CRUD
+
+## 프로젝트 구조
 
 ### 마이크로서비스 아키텍처
 <img src="https://github.com/user-attachments/assets/55de0960-adf9-488c-b5e1-cbb82055b983" alt="MSA" width="400"/>
@@ -27,23 +36,6 @@
 
 ### CI/CD 파이프라인 구축
 <img src="https://github.com/user-attachments/assets/c64c5a1a-0346-4d92-b6fc-29218c99d21d" alt="CICD" width="400"/>
-
-### 통계, OAuth, 결제, 알림 기능
-- **통계**: 웹사이트 트래픽 및 변호사, 유저 통계를 Redis와 MongoDB를 통해 실시간 제공
-<img src="https://github.com/user-attachments/assets/038cb7ed-fc5d-4c49-bf4c-13da997f5c4a" alt="Statistics" width="400"/>
-
-- **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
-<img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
-
-- **결제**: PortOne API를 통해 상품 결제 및 프리미엄 구독 기능 구현
-- **알림**: SSE를 활용하여 실시간 알림 전송
-
-### 변호사 서버 및 AI 채팅 서비스
-- **회원가입 및 마이페이지**: 리액티브몽고리포지토리로 CRUD 작업 구현
-- **변호사 검색**: 리액티브몽고템플릿으로 비동기 검색 기능 구현
-- **SMTP**: Gmail SMTP를 활용한 이메일 인증 및 비밀번호 초기화 기능 구현
-- **게시판 및 파일 관리**: Ncloud Object Storage를 활용한 파일 관리 기능 구현
-- **실시간 채팅**: Apache Kafka를 사용해 실시간 채팅 기능 구현
 
 ### AI 채팅
 <img src="https://github.com/user-attachments/assets/aea31458-7c45-4871-9989-48dd8ef1280d" alt="OAuth" width="400"/>
