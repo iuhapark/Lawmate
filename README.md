@@ -36,9 +36,3 @@
 
 ### CI/CD 파이프라인 구축
 <img src="https://github.com/user-attachments/assets/c64c5a1a-0346-4d92-b6fc-29218c99d21d" alt="CICD" width="400"/>
-
-### AI 채팅
-<img src="https://github.com/user-attachments/assets/aea31458-7c45-4871-9989-48dd8ef1280d" alt="OAuth" width="400"/>
-
-- Llama3 양자화 모델을 활용하여 법률 답변 생성 및 법 카테고리 분류
-- AI 모델이 분석한 결과를 기반으로 맞춤 변호사 추천 기능 구현
