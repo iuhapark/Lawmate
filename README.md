@@ -5,28 +5,27 @@
 
 
 ### 주요 기능
+  > 인공지능 상담 및 변호사 매칭 서비스
 
-- AI 법률 상담
-- 변호사 선임 및 상담 예약 서비스
-- 실시간 채팅 및 알림
-- 데이터 기반 변호사 추천 시스템
-
+      1. AI 법률 상담
+      2. 변호사 선임 및 상담 예약 서비스
+      3. 실시간 채팅 및 알림
+      4. 데이터 기반 변호사 추천 시스템
 
 
 ### 기술 스택
-
-- **백엔드**: Java 17, Spring Boot, Spring Cloud, Spring Security, JPA, Redis, MySQL, MongoDB
-- **프론트엔드**: React, Next.js, TypeScript
-- **DevOps & CI/CD**: Naver Cloud, Docker, Kubernetes, Jenkins, GitHub
+      - 백엔드: Java 17, Spring Boot, Spring Cloud, Spring Security, JPA, Redis, MySQL, MongoDB
+      - 프론트엔드: React, Next.js, TypeScript
+      - DevOps & CI/CD: Naver Cloud, Docker, Kubernetes, Jenkins, GitHub
 
 
 ### 담당 파트
 <img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
 
-- **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
-- **결제**: PortOne API를 통해 상품 결제 및 취소, 구독 기능 구현
-- **알림**: SSE를 활용하여 실시간 알림 전송 및 조회
-- **게시판**: 질문게시판 CRUD
+    1. OAuth: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
+    2. 결제: PortOne API를 통해 상품 결제 및 취소, 구독 기능 구현
+    3. 알림: SSE를 활용하여 실시간 알림 전송 및 조회
+    4. 게시판: 질문게시판 CRUD
 
 ## 프로젝트 구조
 
