@@ -20,7 +20,7 @@
 
 
 ### 담당 파트
-<img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
+<img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/> <br>
 
     1. OAuth: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
     2. 결제: PortOne API를 통해 상품 결제 및 취소, 구독 기능 구현
