@@ -21,9 +21,9 @@
 
 
 ### 담당 파트
-- **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
 <img src="https://github.com/user-attachments/assets/60435f21-a227-4acd-b040-3ee531d11f5d" alt="OAuth" width="400"/>
 
+- **OAuth**: Google OAuth 2.0을 통해 회원가입 및 로그인 기능 구현
 - **결제**: PortOne API를 통해 상품 결제 및 취소, 구독 기능 구현
 - **알림**: SSE를 활용하여 실시간 알림 전송 및 조회
 - **게시판**: 질문게시판 CRUD
